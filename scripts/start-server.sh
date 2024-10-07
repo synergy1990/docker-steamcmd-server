@@ -63,6 +63,11 @@ fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
+serverexec="srcds_run"
+if [ ${GAME_ID} == 90 ]; then
+    serverexec="hlds_run"
+fi
+
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/srcds_run -game ${GAME_NAME} ${GAME_PARAMS} -console +port ${GAME_PORT}
+${SERVER_DIR}/$serverexec -game ${GAME_NAME} ${GAME_PARAMS} -console +port ${GAME_PORT}
